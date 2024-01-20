@@ -34,6 +34,11 @@
 
 /* main */
 int		ft_iscub(char *file_name);
+void	read_file(t_data *prog);
+int		init_bg(t_data *prog, char *line);
+void	init_rgb(t_data *prog, char *line);
+void	init_wall(t_data *prog, char **str);
+int		read_map(t_data *prog);
 
 /* mlx */
 void	init_mlx(t_data *prog);
@@ -43,5 +48,11 @@ int		key_esc(int keycode, t_data *prog);
 int		win_cross(t_data *prog);
 
 int		ft_iscub(char *file_name);
+
+/* utils */
+void	ft_free_str2d(char **str);
+size_t	ft_str2dlen(char **str);
+void	exit_error(t_data *prog, char *str1, char *str2);
+void	free_prog(t_data *prog);
 
 #endif

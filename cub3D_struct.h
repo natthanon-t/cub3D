@@ -51,6 +51,7 @@ typedef struct s_data
 {
 	int				fd;
 	char			**map;
+	char			*xpm[5];
 	char			*rgb[3];
 	unsigned long	floor_color;
 	unsigned long	ceiling_color;
