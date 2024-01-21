@@ -11,3 +11,26 @@ int	read_map(t_data *prog)
 			break ;
 	}
 }
+
+int	add_map(t_data *prog, char *line)
+{
+	char	**map;
+
+	if (!prog->map)
+	{
+		prog->map = (char *)malloc(sizeof(char *) * 2)
+		if (!prog->map)
+			return (1);
+		prog->map[0] = ft_strdup(line);
+		prog->map[1] = NULL;
+	}
+	else
+	{
+		map = ft_realloc2d(prog->map, ft_str2dlen(prog->map) + 2);
+		if (!map)
+			return (1);
+		prog->map = map;
+		prog->map[ft_str2dlen(prog->map)] = ft_strdup(line);
+	}
+	return (0);
+}

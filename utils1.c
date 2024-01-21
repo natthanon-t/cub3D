@@ -41,3 +41,19 @@ void	exit_error(t_data *prog, char *str1, char *str2)
 	close(prog->fd);
 	exit(EXIT_FAILURE);
 }
+
+int	ft_iscub(char *file_name)
+{
+	char	*type;
+	int		i;
+	int		check;
+
+	type = ".cub";
+	check = 1;
+	i = ft_strlen(file_name) - 4;
+	if (i <= 0)
+		return (check);
+	else if (!ft_strncmp(&file_name[i], type, 4) && file_name[i])
+		check = 0;
+	return (check);
+}
