@@ -50,11 +50,11 @@ int		win_cross(t_data *prog);
 /* utils 1 */
 void	ft_free_str2d(char **str);
 size_t	ft_str2dlen(char **str);
-void	exit_error(t_data *prog, char *str1, char *str2);
+void	exit_message(t_data *prog, char *str1, char *str2);
 void	free_prog(t_data *prog);
 int		ft_iscub(char *file_name);
 
 /* utils 2 */
-void	**ft_realloc2d(char **ptr, size_t size);
+char	**ft_realloc2d(char **ptr, size_t size);
 
 #endif

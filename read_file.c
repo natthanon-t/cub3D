@@ -12,7 +12,7 @@ void	read_file(t_data *prog)
 		if (init_bg(prog, line))
 		{
 			free(line);
-			exit_error(prog, "Init Background ", line);
+			exit_message(prog, "Init Background: ", line);
 		}
 		free(line);
 	}

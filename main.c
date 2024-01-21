@@ -5,9 +5,9 @@ int	main(int ac, char **av)
 	t_data	prog;
 
 	if (ac != 2 || ft_iscub(av[1]))
-		exit_error(&prog, "Input Argument Error ", av[1]);
+		exit_message(&prog, "Input Argument Error: ", av[1]);
 	//if (init_data(&prog, av[1]))
-	//	exit_error(&prog, "init_data failed ", av[1]);
+	//	exit_message(&prog, "init_data failed ", av[1]);
 	//init_mlx(&prog);
 }
 

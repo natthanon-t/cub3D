@@ -32,7 +32,7 @@ void	free_prog(t_data *prog)
 	//	mlx_destroy_window(prog->mlx.mlx, prog->mlx.window);
 }
 
-void	exit_error(t_data *prog, char *str1, char *str2)
+void	exit_message(t_data *prog, char *str1, char *str2)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(str1, 2);

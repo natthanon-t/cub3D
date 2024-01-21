@@ -1,12 +1,12 @@
 #include "cub3D.h"
 
-void	**ft_realloc2d(char **ptr, size_t size)
+char	**ft_realloc2d(char **ptr, size_t size)
 {
 	size_t	i;
 	char	**temp;
 
 	i = 0;
-	temp = (char *)malloc(sizeof(char *) * size);
+	temp = (char *)malloc(sizeof(char *) * (size + 1));
 	if (!temp)
 		return (NULL);
 	while (ptr[i])
@@ -15,6 +15,5 @@ void	**ft_realloc2d(char **ptr, size_t size)
 		i++;
 	}
 	temp[size - 1] = NULL;
-	temp[size - 2] = NULL;
 	ft_free_str2d(ptr);
 }

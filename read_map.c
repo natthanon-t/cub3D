@@ -9,7 +9,14 @@ int	read_map(t_data *prog)
 		line = get_next_line(prog->fd);
 		if (!line)
 			break ;
+		if (add_map(prog, line))
+		{
+			exit_message(prog, "Add map error: ", line);
+			free(line);
+		}
+		free(line);
 	}
+	return (0);
 }
 
 int	add_map(t_data *prog, char *line)
@@ -26,7 +33,7 @@ int	add_map(t_data *prog, char *line)
 	}
 	else
 	{
-		map = ft_realloc2d(prog->map, ft_str2dlen(prog->map) + 2);
+		map = ft_realloc2d(prog->map, ft_str2dlen(prog->map) + 1);
 		if (!map)
 			return (1);
 		prog->map = map;
