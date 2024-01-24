@@ -20,17 +20,6 @@ typedef struct s_img
 	int		endian;
 }				t_img;
 
-typedef struct s_map
-{
-	int		fd;
-	int		width;
-	int		height;
-	int		scale;
-	int		*z;
-	int		z_max;
-	int		*color;
-}				t_map;
-
 typedef struct s_key
 {
 	int		w;

@@ -35,7 +35,7 @@ int	init_bg(t_data *prog, char *line)
 			return (1);
 	}
 	if (str2d)
-			ft_free_str2d(str2d);
+		ft_free_str2d(str2d);
 	return (0);
 }
 
