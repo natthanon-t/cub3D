@@ -1,5 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D_struct.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/27 15:54:38 by ntairatt          #+#    #+#             */
+/*   Updated: 2024/01/27 16:13:59 by ntairatt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_STRUCT_H
 # define CUB3D_STRUCT_H
+
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 600
+
+# define ON_KEYDOWN 2
+# define ON_KEYUP 3
+# define ON_DESTROY 17
+
+# define KEY_PRESSED 1
+# define KEY_RELEASED 0
+
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_ESC 53
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
+
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
 
 typedef struct s_point
 {
@@ -16,8 +49,10 @@ typedef struct s_img
 	void	*img_ptr;
 	char	*img_addr;
 	int		bits_per_pixel;
-	int		line_len;
+	int		size_line;
 	int		endian;
+	int		width;
+	int		height;
 }				t_img;
 
 typedef struct s_key
@@ -44,7 +79,9 @@ typedef struct s_data
 	char			*rgb[3];
 	unsigned long	floor_color;
 	unsigned long	ceiling_color;
+	int				wall_arr[4][TEXTURE_WIDTH * TEXTURE_WIDTH];
 	t_mlx			mlx;
+	t_img			img_src[5];
 	t_img			img;
 	t_key			key;
 }				t_data;
