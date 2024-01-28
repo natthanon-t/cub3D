@@ -25,11 +25,11 @@
 
 /* main */
 
-void	read_file(t_data *prog);
-int		init_bg(t_data *prog, char *line);
-void	init_rgb(t_data *prog, char *line);
-void	init_wall(t_data *prog, char **str);
-int		read_map(t_data *prog);
+void	file_read(t_data *prog);
+int		bg_init(t_data *prog, char *line);
+void	rgb_init(t_data *prog, char *line);
+void	wall_init(t_data *prog, char **str);
+int		map_read(t_data *prog);
 
 /* mlx */
 void	init_mlx(t_data *prog);

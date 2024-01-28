@@ -13,7 +13,7 @@
 #include "cub3D.h"
 
 // ft_tohex
-unsigned int	ft_toHex(int red, int green, int blue)
+unsigned int	ft_tohex(int red, int green, int blue)
 {
 	return (((red & 0xFF) << 16) | ((green & 0xFF) << 8) | (blue & 0xFF));
 }
@@ -21,9 +21,9 @@ unsigned int	ft_toHex(int red, int green, int blue)
 void	rgb_convert(t_data *prog, int *rgb, size_t index)
 {
 	if (!index)
-		prog->floor_color = ft_toHex(rgb[0], rgb[1], rgb[2]);
+		prog->floor_color = ft_tohex(rgb[0], rgb[1], rgb[2]);
 	else
-		prog->ceiling_color = ft_toHex(rgb[0], rgb[1], rgb[2]);
+		prog->ceiling_color = ft_tohex(rgb[0], rgb[1], rgb[2]);
 }
 
 int	ft_isnum(const char *str)

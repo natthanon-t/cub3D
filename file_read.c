@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   file_read.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-void	read_file(t_data *prog)
+void	file_read(t_data *prog)
 {
 	char	*line;
 
@@ -21,7 +21,7 @@ void	read_file(t_data *prog)
 		line = get_next_line(prog->fd);
 		if (!line)
 			return ;
-		if (init_bg(prog, line))
+		if (bg_init(prog, line))
 		{
 			free(line);
 			exit_message(prog, "Init Background: ", line);
@@ -30,19 +30,19 @@ void	read_file(t_data *prog)
 	}
 }
 
-int	init_bg(t_data *prog, char *line)
+int	bg_init(t_data *prog, char *line)
 {
 	char **str2d;
 
 	str2d = NULL;
 	if (line && ft_strlen(line) > 2 && (!ft_strncmp(line, "F ", 2) || \
 				!ft_strncmp(line, "C ", 2)))
-		init_rgb(prog, line);
+		rgb_init(prog, line);
 	else
 	{
 		str2d = ft_split(line, ' ');
 		if (str2d && ft_str2dlen(str2d) == 2)
-			init_wall(prog, str2d);
+			wall_init(prog, str2d);
 		else
 			return (1);
 	}
@@ -51,7 +51,7 @@ int	init_bg(t_data *prog, char *line)
 	return (0);
 }
 
-void	init_rgb(t_data *prog, char *line)
+void	rgb_init(t_data *prog, char *line)
 {
 	char *tmp_line;
 
@@ -68,7 +68,7 @@ void	init_rgb(t_data *prog, char *line)
 	}
 }
 
-void	init_wall(t_data *prog, char **str)
+void	wall_init(t_data *prog, char **str)
 {
 	if (!ft_strncmp(str[0], "NO", 2))
 		prog->xpm[0] = ft_strdup(str[1]);

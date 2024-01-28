@@ -42,6 +42,6 @@ int	init_data(t_data *prog, char *filename)
 	prog->map = NULL;
 	//prog->ceiling_color = ;
 	//prog->floor_color = ;
-	read_file(prog);
+	file_read(prog);
 	return (0);
 }

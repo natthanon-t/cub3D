@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_wall.c                                         :+:      :+:    :+:   */
+/*   wall_set.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-void	add_wall(t_data *prog, size_t i)
+void	wall_add(t_data *prog, size_t i)
 {
 	int	x;
 	int	y;
@@ -31,7 +31,7 @@ void	add_wall(t_data *prog, size_t i)
 	}
 }
 
-int	set_wall(t_data *prog)
+int	wall_set(t_data *prog)
 {
 	size_t	i;
 
@@ -48,7 +48,7 @@ int	set_wall(t_data *prog)
 				prog->img_src[i].endian);
 		if (!prog->img_src[i].img_addr)
 			return (1);
-		add_wall(prog, i);
+		wall_add(prog, i);
 		mlx_destroy_image(prog->mlx.mlx, prog->img_src[i].img_ptr);
 		i++;
 	}
