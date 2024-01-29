@@ -1,7 +1,7 @@
-NO ./assets/wall_box.xpm
-SO ./assets/wall_coco.xpm
-EA ./assets/wall_rock.xpm
-WE ./assets/wall_none.xpm
+NO ./assets/wall_no.xpm
+SO ./assets/wall_so.xpm
+EA ./assets/wall_ea.xpm
+WE ./assets/wall_we.xpm
 
 F 019,012,014
 C 190,250,250
