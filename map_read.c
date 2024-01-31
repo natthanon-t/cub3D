@@ -77,14 +77,52 @@ int	close_check(t_data *prog, size_t i, size_t j)
 	return (0);
 }
 
+void	vector_init(t_data *prog, size_t x, size_t y)
+{
+	prog->p.posX = x + 0.5;
+	prog->p.posY = y + 0.5;
+	if (prog->map[y][x] == 'N')
+	{
+		prog->p.dirX = 0;
+		prog->p.dirY = -1;
+		prog->p.planeX = 0.66;
+		prog->p.planeY = 0;
+	}
+	else if (prog->map[y][x] == 'S')
+	{
+		prog->p.dirX = 0;
+		prog->p.dirY = 1;
+		prog->p.planeX = -0.66;
+		prog->p.planeY = 0;
+	}
+}
+
+void	vector_init_util(t_data *prog, size_t x, size_t y)
+{
+	if (prog->map[y][x] == 'E')
+	{
+		prog->p.dirX = 1;
+		prog->p.dirY = 0;
+		prog->p.planeX = 0;
+		prog->p.planeY = 0.66;
+	}
+	else if (prog->map[y][x] == 'W')
+	{
+		prog->p.dirX = -1;
+		prog->p.dirY = 0;
+		prog->p.planeX = 0;
+		prog->p.planeY = -0.66;
+	}
+}
+
 int	map_check_util(t_data *prog)
 {
 	size_t	i;
 	size_t	j;
-	int		count;
+	int		playerCount
 
 	i = 0;
-	count = 0;
+	playerCount = 0;
 	while (prog->map[i])
 	{
 		j = 0;
@@ -92,13 +130,17 @@ int	map_check_util(t_data *prog)
 		{
 			if (!ft_strchr("01NSEW ", prog->map[i][j]))
 				return (1);
-			// if (equal N S E W)
-			// vector init
-			// count ++
+			if (prog->map[i][j] == 'N' || prog->map[i][j] == 'S' || \
+				prog->map[i][j] == 'E' || prog->map[i][j] == 'W')
+			{
+				vector_init(prog, i, j);
+				playerCount++;
+			}
 			j++;
 		}
 		i++;
 	}
+	return (playerCount);
 }
 
 int	map_check(t_data *prog)
@@ -107,10 +149,7 @@ int	map_check(t_data *prog)
 	size_t	j;
 
 	i = 0;
-	// char_check ----------------|
-	//                            |
-	//                            V
-	if (ft_str2dlen(prog->map) < 3)
+	if (ft_str2dlen(prog->map) < 3 || map_check_util(prog) != 1)
 		return (1);
 	while (prog->map[i])
 	{
@@ -121,7 +160,7 @@ int	map_check(t_data *prog)
 		}
 		while (prog->map[i][j])
 		{
-			//if (floodfill)
+			if (close_check(prog, i, j))
 				return (1);
 			j++;
 		}

@@ -34,15 +34,32 @@
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
 
-typedef struct s_point
+typedef struct s_player
 {
-	int		x;
-	int		y;
-	int		z;
-	int		x_update;
-	int		y_update;
-	int		color;
-}				t_point;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	double	posX;
+	double	posY;
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist
+	int		mapX;
+	int		mapY;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+	int		drawStart;
+	int		lineHeight;
+	int		drawEnd;
+}				t_player;
 
 typedef struct s_img
 {
@@ -80,6 +97,7 @@ typedef struct s_data
 	unsigned long	floor_color;
 	unsigned long	ceiling_color;
 	int				wall_arr[4][TEXTURE_WIDTH * TEXTURE_WIDTH];
+	t_player		p;
 	t_mlx			mlx;
 	t_img			img_src[5];
 	t_img			img;
