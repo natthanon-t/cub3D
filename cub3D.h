@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:41 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/01/27 16:13:54 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/02 23:30:07 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	rgb_init(t_data *prog, char *line);
 void	wall_init(t_data *prog, char **str);
 int		map_read(t_data *prog);
 
+/* RGB */
+int		rgb_interpret(t_data *prog);
+
 /* mlx */
 void	init_mlx(t_data *prog);
 
@@ -47,5 +50,6 @@ int		ft_iscub(char *file_name);
 
 /* utils 2 */
 char	**ft_realloc2d(char **ptr, size_t size);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:23 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/01/27 15:55:24 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/02 23:05:24 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**ft_realloc2d(char **ptr, size_t size)
 	char	**temp;
 
 	i = 0;
-	temp = (char *)malloc(sizeof(char *) * (size + 1));
+	temp = (char **)malloc(sizeof(char *) * (size + 1));
 	if (!temp)
 		return (NULL);
 	while (ptr[i])
@@ -28,4 +28,5 @@ char	**ft_realloc2d(char **ptr, size_t size)
 	}
 	temp[size - 1] = NULL;
 	ft_free_str2d(ptr);
+	return (temp);
 }

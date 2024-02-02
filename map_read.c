@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/01/27 15:55:09 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/02 23:05:36 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	map_read(t_data *prog)
 		}
 		free(line);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	map_add(t_data *prog, char *line)
@@ -39,7 +39,7 @@ int	map_add(t_data *prog, char *line)
 	{
 		prog->map = (char *)malloc(sizeof(char *) * 2);
 		if (!prog->map)
-			return (1);
+			return (EXIT_FAILURE);
 		prog->map[0] = ft_strdup(line);
 		prog->map[1] = NULL;
 	}
@@ -47,11 +47,11 @@ int	map_add(t_data *prog, char *line)
 	{
 		map = ft_realloc2d(prog->map, ft_str2dlen(prog->map) + 1);
 		if (!map)
-			return (1);
+			return (EXIT_FAILURE);
 		prog->map = map;
 		prog->map[ft_str2dlen(prog->map)] = ft_strdup(line);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	close_check(t_data *prog, size_t i, size_t j)
@@ -60,21 +60,21 @@ int	close_check(t_data *prog, size_t i, size_t j)
 		prog->map[i][j] != ' '))
 	{
 		if (!i || !prog->map[i + 1] || !j || !prog->map[i][j + 1])
-			return (1);
+			return (EXIT_FAILURE);
 		else if (prog->map[i - 1] && prog->map[i - 1][j] && \
 			prog->map[i - 1][j] == ' ')
-			return (1);
+			return (EXIT_FAILURE);
 		else if (prog->map[i + 1] && prog->map[i + 1][j] && \
 			prog->map[i + 1][j] == ' ')
-			return (1);
+			return (EXIT_FAILURE);
 		else if (prog->map[i] && prog->map[i][j - 1] && \
 			prog->map[i][j - 1] == ' ')
-			return (1);
+			return (EXIT_FAILURE);
 		else if (prog->map[i] && prog->map[i][j + 1] && \
 			prog->map[i][j + 1] == ' ')
-			return (1);
+			return (EXIT_FAILURE);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 void	vector_init(t_data *prog, size_t x, size_t y)
@@ -119,7 +119,7 @@ int	map_check_util(t_data *prog)
 {
 	size_t	i;
 	size_t	j;
-	int		playerCount
+	int		playerCount;
 
 	i = 0;
 	playerCount = 0;
@@ -129,7 +129,7 @@ int	map_check_util(t_data *prog)
 		while (prog->map[i][j])
 		{
 			if (!ft_strchr("01NSEW ", prog->map[i][j]))
-				return (1);
+				return (EXIT_FAILURE);
 			if (prog->map[i][j] == 'N' || prog->map[i][j] == 'S' || \
 				prog->map[i][j] == 'E' || prog->map[i][j] == 'W')
 			{
@@ -150,7 +150,7 @@ int	map_check(t_data *prog)
 
 	i = 0;
 	if (ft_str2dlen(prog->map) < 3 || map_check_util(prog) != 1)
-		return (1);
+		return (EXIT_FAILURE);
 	while (prog->map[i])
 	{
 		j = 0;
@@ -161,10 +161,10 @@ int	map_check(t_data *prog)
 		while (prog->map[i][j])
 		{
 			if (close_check(prog, i, j))
-				return (1);
+				return (EXIT_FAILURE);
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

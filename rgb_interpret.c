@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_define.c                                       :+:      :+:    :+:   */
+/*   rgb_interpret.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 15:54:55 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/01/27 15:54:56 by ntairatt         ###   ########.fr       */
+/*   Created: 2024/02/02 23:20:43 by ntairatt          #+#    #+#             */
+/*   Updated: 2024/02/02 23:20:47 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// ft_tohex
 unsigned int	ft_tohex(int red, int green, int blue)
 {
 	return (((red & 0xFF) << 16) | ((green & 0xFF) << 8) | (blue & 0xFF));
@@ -32,14 +31,14 @@ int	ft_isnum(const char *str)
 
 	i = 0;
 	if (!str)
-		return (0);
+		return (EXIT_SUCCESS);
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			return (1);
+			return (EXIT_FAILURE);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	rgb_check(char **str2d, int *rgb)
@@ -52,16 +51,16 @@ int	rgb_check(char **str2d, int *rgb)
 	{
 		str = ft_strtrim(str2d[i], " ");
 		if (!str)
-			return (1);
+			return (EXIT_FAILURE);
 		if (ft_isnum(str))
-			return (free(str), 1);
+			return (free(str), EXIT_FAILURE);
 		rgb[i] = ft_atoi(str);
 		free(str);
 		if (rgb[i] < 0 || rgb[i] > 255)
-			return (1);
+			return (EXIT_FAILURE);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	rgb_interpret(t_data *prog)
@@ -75,10 +74,10 @@ int	rgb_interpret(t_data *prog)
 	{
 		str2d = ft_split(prog->rgb[i], ',');
 		if (!str2d || ft_str2dlen(str2d) != 3 || rgb_check(str2d, rgb))
-			return (1);
+			return (EXIT_FAILURE);
 		rgb_convert(prog, rgb, i);
 		ft_free_str2d(str2d);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

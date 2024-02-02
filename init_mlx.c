@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:45 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/01/27 15:54:46 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/02 23:32:05 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_mlx(t_data *prog)
 	prog->mlx.window = mlx_new_window(prog->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	prog->img.img_ptr = mlx_new_image(prog->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	prog->img.img_addr = mlx_get_data_addr(prog->img.img_ptr,
-			&prog->img.bits_per_pixel, &prog->img.line_len, &prog->img.endian);
+			&prog->img.bits_per_pixel, &prog->img.size_line, &prog->img.endian);
 	//map_scale(prog->map);
 	//draw_map(prog);
 	mlx_put_image_to_window(prog->mlx.mlx, prog->mlx.window, prog->img.img_ptr,
@@ -30,17 +30,26 @@ void	init_mlx(t_data *prog)
 	mlx_loop(prog->mlx.mlx);
 }
 
+void	paint_pixel(t_data *prog, size_t x, size_t y, int color)
+{
+	char *addr;
+
+	addr = (char *)prog->img.img_addr + \
+		(y * prog->img.size_line + x * (prog->img.bits_per_pixel / 8));
+	*(unsigned int *)addr = color;
+}
+
 void	paint_background(t_data *prog)
 {
-	int	x;
-	int	y;
+	size_t	x;
+	size_t	y;
 
 	x = 0;
 	while (x < WIN_HEIGHT)
 	{
 		y = 0;
 		while (y < WIN_WIDTH / 2)
-			//paint_pixel(prog, x, y, prog->color);
+			paint_pixel(prog, x, y, prog->ceiling_color);
 		x++;
 	}
 	x = 0;
@@ -48,18 +57,9 @@ void	paint_background(t_data *prog)
 	{
 		y = (WIN_WIDTH / 2) - 1;
 		while (y < WIN_WIDTH / 2)
-			//paint_pixel(prog, x, y, prog->color);
+			paint_pixel(prog, x, y, prog->floor_color);
 		x++;
 	}
-}
-
-void	paint_pixel(t_data *data, int x, int y, int color)
-{
-	char *addr;
-
-	addr = (char *)data->img.img_addr + \
-		(y * data->img.line_len + x * (data->img.bits_per_pixel / 8));
-	*(unsigned int *)addr = color;
 }
 
 int	key_esc(int keycode, t_data *prog)
@@ -72,7 +72,7 @@ int	key_esc(int keycode, t_data *prog)
 		//mlx_destroy_window(prog->mlx.mlx, prog->mlx.window);
 		//exit(0);
 	}
-	return (0);
+	return (EXIT_FAILURE);
 }
 
 int	win_cross(t_data *prog)

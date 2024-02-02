@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:38 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/01/27 16:13:59 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/02 23:05:46 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_player
 	double	sideDistY;
 	double	deltaDistX;
 	double	deltaDistY;
-	double	perpWallDist
+	double	perpWallDist;
 	int		mapX;
 	int		mapY;
 	int		stepX;

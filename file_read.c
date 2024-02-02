@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/01/27 15:55:04 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/02 23:04:06 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int	bg_init(t_data *prog, char *line)
 		if (str2d && ft_str2dlen(str2d) == 2)
 			wall_init(prog, str2d);
 		else
-			return (1);
+			return (EXIT_FAILURE);
 	}
 	if (str2d)
 		ft_free_str2d(str2d);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 void	rgb_init(t_data *prog, char *line)

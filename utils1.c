@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:18 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/01/27 15:55:19 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/02 23:04:54 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ size_t	ft_str2dlen(char **str)
 
 	i = 0;
 	if (!str)
-		return (0);
+		return (EXIT_SUCCESS);
 	while (str[i])
 		i++;
 	return (i);
+	
 }
 
 void	free_prog(t_data *prog)
