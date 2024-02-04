@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:41 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/04 10:41:42 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 00:01:15 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		bg_init(t_data *prog, char *line);
 void	rgb_init(t_data *prog, char *line);
 void	wall_init(t_data *prog, char **str);
 int		map_read(t_data *prog);
+char	*remove_nextline(char *line);
 
 /* RGB */
 int		rgb_interpret(t_data *prog);
@@ -40,6 +41,7 @@ int		map_add(t_data *prog, char *line);
 
 /* mlx */
 void	init_mlx(t_data *prog);
+void	paint_pixel(t_data *prog, size_t x, size_t y, int color);
 
 /* key destroy */
 int		key_esc(int keycode, t_data *prog);
@@ -57,5 +59,9 @@ int		ft_iscub(char *file_name);
 
 /* utils 2 */
 char	**ft_realloc2d(char **ptr, size_t size);
+
+/* raycast */
+void	raycast(t_data *prog);
+void	raycast_util(t_data *prog, int x);
 
 #endif

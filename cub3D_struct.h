@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:38 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/03 22:59:12 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/04 23:29:57 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ typedef struct s_player
 	double	frameTime;
 	double	moveSpeed;
 	double	rotSpeed;
+	double	wallX;
+	int		texX;
+	int		texY;
 	int		mapX;
 	int		mapY;
 	int		stepX;
@@ -63,6 +66,8 @@ typedef struct s_player
 	int		drawStart;
 	int		lineHeight;
 	int		drawEnd;
+	size_t	texture_nbr;
+	unsigned	color;
 }				t_player;
 
 typedef struct s_img

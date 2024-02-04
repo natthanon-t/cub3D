@@ -13,6 +13,10 @@ SRCS    =	main.c \
 			file_read.c \
 			rgb_interpret.c \
 			map_read.c \
+			wall_set.c \
+			init_mlx.c \
+			raycast1.c \
+			raycast2.c \
 			utils1.c \
 			utils2.c
 

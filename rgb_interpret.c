@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:20:43 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/03 23:20:59 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 00:05:20 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,13 @@ static int	ft_isnum(const char *str)
 static int	rgb_check(char **str2d, int *rgb)
 {
 	size_t	i;
-	char	*str;
 
 	i = 0;
 	while (str2d[i])
 	{
-		str = ft_strtrim(str2d[i], " ");
-		if (!str)
-			return (EXIT_FAILURE);
-		if (ft_isnum(str) == EXIT_FAILURE)
-			return (free(str), EXIT_FAILURE);
-		rgb[i] = ft_atoi(str);
+		if (ft_isnum(str2d[i]) == EXIT_FAILURE)
+			return (free(str2d[i]), EXIT_FAILURE);
+		rgb[i] = ft_atoi(str2d[i]);
 		if (rgb[i] < 0 || rgb[i] > 255)
 			return (EXIT_FAILURE);
 		i++;

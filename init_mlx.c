@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:45 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/04 10:11:56 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/04 22:48:45 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ void	init_mlx(t_data *prog)
 	prog->img.img_ptr = mlx_new_image(prog->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	prog->img.img_addr = mlx_get_data_addr(prog->img.img_ptr,
 			&prog->img.bits_per_pixel, &prog->img.size_line, &prog->img.endian);
-	//map_scale(prog->map);
-	//draw_map(prog);
+	raycast(prog);
 	mlx_put_image_to_window(prog->mlx.mlx, prog->mlx.window, prog->img.img_ptr,
 		0, 0);
-	mlx_key_hook(prog->mlx.window, key_esc, prog);
+	//mlx_key_hook(prog->mlx.window, key_esc, prog);
 	//mlx_hook(prog->mlx.window, ON_KEYDOWN, 0, &key_press, prog);
 	//mlx_hook(prog->mlx.window, ON_KEYUP, 0, &key_release, prog);
-	mlx_hook(prog->mlx.window, ON_DESTROY, 0, win_cross, prog);
+	//mlx_hook(prog->mlx.window, ON_DESTROY, 0, win_cross, prog);
 	mlx_loop(prog->mlx.mlx);
 }
 
@@ -62,7 +61,7 @@ void	paint_background(t_data *prog)
 	}
 }
 
-int	key_esc(int keycode, t_data *prog)
+/*int	key_esc(int keycode, t_data *prog)
 {
 	if (keycode == 53)
 	{
@@ -82,4 +81,4 @@ int	win_cross(t_data *prog)
 	//mlx_destroy_image(prog->mlx.mlx, prog->img.img_ptr);
 	//mlx_destroy_window(prog->mlx.mlx, prog->mlx.window);
 	//exit(0);
-}
+}*/

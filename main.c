@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:49 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/04 10:42:48 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 00:07:51 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,30 @@ static void	key_set_released(t_data *prog)
 	prog->key.d = KEY_RELEASED;
 	prog->key.arrow_left = KEY_RELEASED;
 	prog->key.arrow_right = KEY_RELEASED;
+}
+
+char	*remove_nextline(char *line)
+{
+	char	*new;
+	size_t	i;
+
+	i = 0;
+	if (!line)
+		return (NULL);
+	if (line[ft_strlen(line) - 1] == '\n')
+		;
+	else
+		return (ft_strdup(line));
+	new = (char *)malloc(sizeof(char) * ft_strlen(line));
+	if (!new)
+		return (NULL);
+	while (line[i] != '\n')
+	{
+		new[i] = line[i];
+		i++;
+	}
+	new[i] = '\0';
+	return (new);
 }
 
 int	init_data(t_data *prog, char *filename)

@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:15 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/04 10:41:18 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/04 22:46:34 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ int	wall_set(t_data *prog)
 		if (!prog->img_src[i].img_ptr)
 			return (EXIT_FAILURE);
 		prog->img_src[i].img_addr = mlx_get_data_addr(prog->img_src[i].img_ptr, \
-				prog->img_src[i].bits_per_pixel, prog->img_src[i].size_line, \
-				prog->img_src[i].endian);
+			&prog->img_src[i].bits_per_pixel, &prog->img_src[i].size_line, \
+			&prog->img_src[i].endian);
 		if (!prog->img_src[i].img_addr)
 			return (EXIT_FAILURE);
 		wall_add(prog, i);
 		mlx_destroy_image(prog->mlx.mlx, prog->img_src[i].img_ptr);
 		i++;
 	}
+	return (EXIT_SUCCESS);
 }
