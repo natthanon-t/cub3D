@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/02 23:05:36 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/04 09:48:16 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ int	map_read(t_data *prog)
 		line = get_next_line(prog->fd);
 		if (!line)
 			break ;
-		if (map_add(prog, line))
-		{
-			exit_message(prog, "Add map error: ", line);
-			free(line);
-		}
+		if (map_add(prog, line) == EXIT_FAILURE)
+			exit_message(prog, "Add map error: ", NULL, line);
 		free(line);
 	}
 	return (EXIT_SUCCESS);
@@ -37,7 +34,7 @@ int	map_add(t_data *prog, char *line)
 
 	if (!prog->map)
 	{
-		prog->map = (char *)malloc(sizeof(char *) * 2);
+		prog->map = (char **)malloc(sizeof(char *) * 2);
 		if (!prog->map)
 			return (EXIT_FAILURE);
 		prog->map[0] = ft_strdup(line);
@@ -119,10 +116,10 @@ int	map_check_util(t_data *prog)
 {
 	size_t	i;
 	size_t	j;
-	int		playerCount;
+	int		player_count;
 
 	i = 0;
-	playerCount = 0;
+	player_count = 0;
 	while (prog->map[i])
 	{
 		j = 0;
@@ -134,13 +131,13 @@ int	map_check_util(t_data *prog)
 				prog->map[i][j] == 'E' || prog->map[i][j] == 'W')
 			{
 				vector_init(prog, i, j);
-				playerCount++;
+				player_count++;
 			}
 			j++;
 		}
 		i++;
 	}
-	return (playerCount);
+	return (player_count);
 }
 
 int	map_check(t_data *prog)

@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:38 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/02 23:05:46 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/03 22:59:12 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 
+# define SENS 1.5
 # define ON_KEYDOWN 2
 # define ON_KEYUP 3
 # define ON_DESTROY 17
@@ -50,6 +51,9 @@ typedef struct s_player
 	double	deltaDistX;
 	double	deltaDistY;
 	double	perpWallDist;
+	double	frameTime;
+	double	moveSpeed;
+	double	rotSpeed;
 	int		mapX;
 	int		mapY;
 	int		stepX;

@@ -6,13 +6,13 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:15 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/02 23:02:10 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/04 10:41:18 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	wall_add(t_data *prog, size_t i)
+static void	wall_add(t_data *prog, size_t i)
 {
 	int	x;
 	int	y;

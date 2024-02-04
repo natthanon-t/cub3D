@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/02 23:04:06 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/04 10:43:43 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,14 @@ void	file_read(t_data *prog)
 		if (!line)
 			return ;
 		if (bg_init(prog, line))
-		{
-			free(line);
-			exit_message(prog, "Init Background: ", line);
-		}
+			exit_message(prog, "Init Background: ", NULL, line);
 		free(line);
 	}
 }
 
 int	bg_init(t_data *prog, char *line)
 {
-	char **str2d;
+	char	**str2d;
 
 	str2d = NULL;
 	if (line && ft_strlen(line) > 2 && (!ft_strncmp(line, "F ", 2) || \
@@ -53,7 +50,7 @@ int	bg_init(t_data *prog, char *line)
 
 void	rgb_init(t_data *prog, char *line)
 {
-	char *tmp_line;
+	char	*tmp_line;
 
 	tmp_line = line;
 	if (!ft_strncmp(tmp_line, "F ", 2))

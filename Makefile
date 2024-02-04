@@ -6,25 +6,29 @@ CFLAGS =	-Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 FRAMEWORK = -framework OpenGL -framework AppKit
 
-HEADERS     =	cub3D_struct.h \
-				cub3D.h \
-				mlx.h
+HEADERS     =	cub3D.h \
+			cub3D_struct.h
 
-SRCS    =	main.c
+SRCS    =	main.c \
+			file_read.c \
+			rgb_interpret.c \
+			map_read.c \
+			utils1.c \
+			utils2.c
 
-MLX	=	mlx/libmlx.a
-MLX_DIR	=	mlx/
+MLX     =	mlx/libmlx.a
+MLX_DIR     =	mlx
 
-LIBFT	= libft/libft.a
-LIBFT_DIR	=	libft/include
+LIBFT     = libft/libft.a
+LIBFT_DIR     =	libft/include
 
-OBJS    =	$(SRCS:.c=.o)
+OBJS     =	$(SRCS:.c=.o)
+OBJS_DIR     =	obj
 
-$(NAME):
-	@$(MAKE) -C libft
+$(NAME): $(OBJS)
 	@$(MAKE) -C mlx
-	@$(OBJS)
-	@$(CC) $(CFLAGS) $(LIBFT) $(MLX) $(SRCS) $(FRAMEWORK) -o $(NAME)
+	@$(MAKE) -C libft
+	@$(CC) $(CFLAGS) $(LIBFT) $(MLX) $(OBJS) $(FRAMEWORK) -o $(NAME)
 
 $(OBJS): $(HEADERS)
 

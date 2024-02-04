@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:45 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/02 23:32:05 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/04 10:11:56 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,18 @@ void	paint_background(t_data *prog)
 	size_t	y;
 
 	x = 0;
-	while (x < WIN_HEIGHT)
+	while (x < WIN_WIDTH)
 	{
 		y = 0;
-		while (y < WIN_WIDTH / 2)
+		while (y < WIN_HEIGHT / 2)
 			paint_pixel(prog, x, y, prog->ceiling_color);
 		x++;
 	}
 	x = 0;
-	while (x < WIN_HEIGHT)
+	while (x < WIN_WIDTH)
 	{
 		y = (WIN_WIDTH / 2) - 1;
-		while (y < WIN_WIDTH / 2)
+		while (y < WIN_HEIGHT)
 			paint_pixel(prog, x, y, prog->floor_color);
 		x++;
 	}
