@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:43:58 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/04 22:49:52 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 00:11:34 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,17 @@ static void	calculate_wall_hit(t_data *prog)
 static void	draw_vertical_stripe(t_data *prog, int x)
 {
 	double	step;
-	double	texPos;
+	double	tex_pos;
 	double	y;
 
 	step = 1.0 * TEXTURE_HEIGHT / prog->p.lineHeight;
-	texPos = (prog->p.drawStart - WIN_HEIGHT / 2 + prog->p.lineHeight / 2) * \
+	tex_pos = (prog->p.drawStart - WIN_HEIGHT / 2 + prog->p.lineHeight / 2) * \
 		step;
 	y = prog->p.drawStart;
 	while (y < prog->p.drawEnd)
 	{
-		prog->p.texY = (int)texPos & (TEXTURE_HEIGHT - 1);
-		texPos += step;
+		prog->p.texY = (int)tex_pos & (TEXTURE_HEIGHT - 1);
+		tex_pos += step;
 		prog->p.color = prog->wall_arr[prog->p.texture_nbr][TEXTURE_HEIGHT * \
 			prog->p.texY + prog->p.texX];
 		if (prog->p.side == 1)
