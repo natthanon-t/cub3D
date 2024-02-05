@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:49 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 11:04:06 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:21:04 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,18 @@ int	main(int ac, char **av)
 		exit_message(&prog, "Init_data failed ", av[1], NULL);
 	if (rgb_interpret(&prog) == EXIT_FAILURE)
 		exit_message(&prog, "RGB_interpret ", "failed", NULL);
-	for (int i = 0;i < 5; i++)
-	{
-		printf("xpm = %s\n", prog.xpm[i]);
-	}
-	for (int i = 0;i < 3;i++)
-	{
-		printf("rgb = %s\n", prog.rgb[i]);
-	}
-	exit(0);
 	if (map_read(&prog) == EXIT_FAILURE)
 		exit_message(&prog, "Map_read ", "failed", NULL);
+	if (map_check(&prog) == EXIT_FAILURE)
+		exit_message(&prog, "Map_check ", "failed", NULL);
+	int i =0;
+	for (int i = 0; i < 5; i++)
+		printf("xpm = %s\n", prog.xpm[i]);
+	for (int i = 0; i < 3; i++)
+		printf("c = %s\n", prog.rgb[i]);
+	while (prog.map[i])
+		printf("map = %s\n", prog.map[i++]);
+	exit(0);
 	//prog.mlx.mlx = mlx_init();
 	//prog.mlx.window = mlx_new_window(prog.mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	//if (wall_set(&prog) == EXIT_FAILURE)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:41 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 00:01:15 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:19:38 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		rgb_interpret(t_data *prog);
 
 /* Map_read */
 int		map_add(t_data *prog, char *line);
+int		map_check(t_data *prog);
 
 /* mlx */
 void	init_mlx(t_data *prog);

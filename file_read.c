@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_read.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 11:05:44 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:32:52 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	rgb_init(t_data *prog, char *line)
 	{
 		tmp_line += 2;
 		prog->rgb[1] = remove_nextline(tmp_line);
+		prog->xpm[4] = 0;
+		prog->rgb[2] = 0;
 	}
 }
 

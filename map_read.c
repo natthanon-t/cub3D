@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 10:44:31 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:40:03 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	vector_init_util(t_data *prog, size_t x, size_t y)
 	}
 }
 
-int	map_check_util(t_data *prog)
+static int	map_check_util(t_data *prog)
 {
 	size_t	i;
 	size_t	j;
@@ -156,13 +156,13 @@ int	map_check(t_data *prog)
 	size_t	i;
 	size_t	j;
 
-	i = 0;
+	i = 1;
 	if (ft_str2dlen(prog->map) < 3 || map_check_util(prog) != 1)
 		return (EXIT_FAILURE);
 	while (prog->map[i])
 	{
 		j = 0;
-		if (ft_strlen(prog->map[i]) < 3 || prog->map[i][j] == '\n')
+		if (prog->map[i][j] == '\n')
 		{
 			if (ft_iseof(prog, i))
 				return (EXIT_FAILURE);
