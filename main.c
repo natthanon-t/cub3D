@@ -6,11 +6,72 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:49 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 12:21:04 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:13:47 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	count_map(char **map, int mode)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	if (mode == 0)
+	{
+		j = 0;
+		while (map[j])
+		{
+			k = 0;
+			while (map[j][k])
+				k++;
+			if (k > i)
+				i = k;
+			j++;
+		}
+	}
+	else if (mode == 1)
+	{
+		while (map[i])
+			i++;
+	}
+	return (i);
+}
+
+void	get_map_data(t_data *data, char **map)
+{
+	int	i;
+	int	j;
+	int	k;
+	char	**tmp_map;
+
+	i = count_map(map, 1);
+	j = 0;
+	tmp_map = data->map;
+	data->map = (char **)malloc(sizeof(char *) * (i + 1));
+	data->map[i] = NULL;
+	i = count_map(map, 0);
+	while (map[j])
+	{
+		k = 0;
+		data->map[j] = (char *)malloc(sizeof(char) * (i + 1));
+		data->map[j][i] = 0;
+		while (map[j][k])
+		{
+			if (map[j][k] != ' ')
+				data->map[j][k] = map[j][k];
+			else if (map[j][k] == ' ')
+				data->map[j][k] = ' ';
+			k++;
+		}
+		while (k < i)
+			data->map[j][k++] = ' ';
+		j++;
+	}
+	ft_free_str2d(tmp_map);
+}
 
 int	main(int ac, char **av)
 {
@@ -24,22 +85,26 @@ int	main(int ac, char **av)
 		exit_message(&prog, "RGB_interpret ", "failed", NULL);
 	if (map_read(&prog) == EXIT_FAILURE)
 		exit_message(&prog, "Map_read ", "failed", NULL);
-	if (map_check(&prog) == EXIT_FAILURE)
-		exit_message(&prog, "Map_check ", "failed", NULL);
-	int i =0;
-	for (int i = 0; i < 5; i++)
-		printf("xpm = %s\n", prog.xpm[i]);
-	for (int i = 0; i < 3; i++)
-		printf("c = %s\n", prog.rgb[i]);
+	get_map_data(&prog, prog.map);
+	int i = 0;
 	while (prog.map[i])
 		printf("map = %s\n", prog.map[i++]);
-	exit(0);
-	//prog.mlx.mlx = mlx_init();
-	//prog.mlx.window = mlx_new_window(prog.mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
-	//if (wall_set(&prog) == EXIT_FAILURE)
-	//	exit_message(&prog, "Wall set ", "failed", NULL);
-	//	init_mlx(&prog);
-	//raycast(&prog);
+	if (map_check(&prog) == EXIT_FAILURE)
+		exit_message(&prog, "Map_check ", "failed", NULL);	
+	prog.mlx.mlx = mlx_init();
+	prog.mlx.window = mlx_new_window(prog.mlx.mlx, WIN_WIDTH + 300, WIN_HEIGHT, "cub3D");
+	//for (int i = 0; i < 5; i++)
+	//	printf("xpm = %s\n", prog.xpm[i]);
+	//for (int i = 0; i < 3; i++)
+	//	printf("c = %s\n", prog.rgb[i]);
+	if (wall_set(&prog) == EXIT_FAILURE)
+		exit_message(&prog, "Wall set ", "failed", NULL);
+	//for (int i = 0;i < 4;i++)
+	//	printf("%p\n", prog.img_src[i].img_ptr);
+	mlx_loop_hook(prog.mlx.mlx, &init_mlx, &prog);
+	mlx_hook(prog.mlx.window, X_EVENT_KEY_PRESS, 0, &key_press, &prog);
+	mlx_hook(prog.mlx.window, X_EVENT_KEY_RELEASE, 0, &key_release, &prog);
+	mlx_loop(prog.mlx.mlx);
 }
 
 static void	key_set_released(t_data *prog)

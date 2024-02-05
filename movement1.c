@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 09:59:09 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/04 09:59:51 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:41:59 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,41 @@ void	rotate_left(t_data *prog)
 		prog->p.planeY * cos(-prog->p.rotSpeed);
 }
 
-void	key_press(int key_code, t_data *prog)
+int	key_press(int keycode, t_data *data)
 {
-	//key event
+	// if (keycode == ESC)
+	// 	clear_and_exit0(data);
+	if (keycode == KEY_W)
+		data->key.w = KEY_PRESSED;
+	else if (keycode == KEY_S)
+		data->key.s = KEY_PRESSED;
+	else if (keycode == KEY_A)
+		data->key.a = KEY_PRESSED;
+	else if (keycode == KEY_D)
+		data->key.d = KEY_PRESSED;
+	else if (keycode == KEY_LEFT)
+		data->key.arrow_left = KEY_PRESSED;
+	else if (keycode == KEY_RIGHT)
+		data->key.arrow_right = KEY_PRESSED;
+	return (0);
 }
 
-void	key_release(int key_code, t_data *prog)
+int	key_release(int keycode, t_data *data)
 {
-	//key event
+	// if (keycode == ESC)
+	// 	clear_and_exit0(data);
+	if (keycode == KEY_W)
+		data->key.w = KEY_RELEASED;
+	else if (keycode == KEY_S)
+		data->key.s = KEY_RELEASED;
+	else if (keycode == KEY_A)
+		data->key.a = KEY_RELEASED;
+	else if (keycode == KEY_D)
+		data->key.d = KEY_RELEASED;
+	else if (keycode == KEY_LEFT)
+		data->key.arrow_left = KEY_RELEASED;
+	else if (keycode == KEY_RIGHT)
+		data->key.arrow_right = KEY_RELEASED;
+	return (0);
 }
+

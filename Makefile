@@ -14,6 +14,9 @@ SRCS    =	main.c \
 			rgb_interpret.c \
 			map_read.c \
 			wall_set.c \
+			minimap.c \
+			movement1.c \
+			movement2.c \
 			init_mlx.c \
 			raycast1.c \
 			raycast2.c \

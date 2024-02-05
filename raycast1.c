@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:44:04 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/04 22:44:06 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:16:06 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	calculate_ray(t_data *prog, int x)
 {
-	prog->p.cameraX = (2 * x) / (WIN_WIDTH - 1);
+	prog->p.cameraX = (2 * x) / (double)WIN_WIDTH - 1;
 	prog->p.rayDirX = prog->p.dirX + prog->p.planeX * prog->p.cameraX;
 	prog->p.rayDirY = prog->p.dirY + prog->p.planeY * prog->p.cameraX;
 	prog->p.mapX = (int)prog->p.posX;
@@ -46,7 +46,7 @@ static void	calculate_step_init_sidedist(t_data *prog)
 	if (prog->p.rayDirY < 0)
 	{
 		prog->p.stepY = -1;
-		prog->p.sideDistX = (prog->p.posY - prog->p.mapY) * prog->p.deltaDistY;
+		prog->p.sideDistY = (prog->p.posY - prog->p.mapY) * prog->p.deltaDistY;
 	}
 	else
 	{
@@ -78,7 +78,7 @@ static void	ft_dda(t_data *prog)
 {
 	while (prog->p.hit == 0)
 	{
-		if (prog->p.sideDistX)
+		if (prog->p.sideDistX < prog->p.sideDistY)
 		{
 			prog->p.sideDistX += prog->p.deltaDistX;
 			prog->p.mapX += prog->p.stepX;
@@ -86,7 +86,7 @@ static void	ft_dda(t_data *prog)
 		}
 		else
 		{
-			prog->p.sideDistX += prog->p.deltaDistY;
+			prog->p.sideDistY += prog->p.deltaDistY;
 			prog->p.mapY += prog->p.stepY;
 			prog->p.side = 1;
 		}

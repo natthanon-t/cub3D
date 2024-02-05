@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:41 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 12:19:38 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:56:39 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		bg_init(t_data *prog, char *line);
 void	rgb_init(t_data *prog, char *line);
 void	wall_init(t_data *prog, char **str);
 int		map_read(t_data *prog);
+int		count_map(char **map, int mode);
 char	*remove_nextline(char *line);
 
 /* RGB */
@@ -39,14 +40,26 @@ int		rgb_interpret(t_data *prog);
 /* Map_read */
 int		map_add(t_data *prog, char *line);
 int		map_check(t_data *prog);
+void	vector_init_util(t_data *prog, size_t x, size_t y);
 
 /* mlx */
-void	init_mlx(t_data *prog);
-void	paint_pixel(t_data *prog, size_t x, size_t y, int color);
+int		init_mlx(t_data *prog);
+void	paint_pixel(t_data *prog, int x, int y, int color);
+void	paint_background(t_data *prog);
 
 /* key destroy */
+void	rotate_right(t_data *prog);
+void	rotate_left(t_data *prog);
 int		key_esc(int keycode, t_data *prog);
 int		win_cross(t_data *prog);
+int		key_press(int keycode, t_data *data);
+int		key_release(int keycode, t_data *data);
+
+/* movement */
+void	move(t_data *data);
+
+/* minimap */
+void	create_minimap(t_data *data);
 
 /* wall_set */
 int		wall_set(t_data *prog);

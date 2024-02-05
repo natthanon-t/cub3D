@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:38 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 09:41:47 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:43:44 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # define KEY_ESC 53
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
+
+# define X_EVENT_KEY_PRESS		2
+# define X_EVENT_KEY_RELEASE	3
 
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
@@ -73,7 +76,7 @@ typedef struct s_player
 typedef struct s_img
 {
 	void	*img_ptr;
-	char	*img_addr;
+	int		*img_addr;
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;

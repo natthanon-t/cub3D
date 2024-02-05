@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:43:58 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 00:11:34 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:09:15 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	calculate_perpendicular_ray(t_data *prog)
 
 static void	calculate_highest_lowest_pixel(t_data *prog)
 {
-	prog->p.drawStart = -prog->p.lineHeight / 2 + WIN_HEIGHT / 2;
+	prog->p.drawStart = WIN_HEIGHT / 2 - prog->p.lineHeight / 2;
 	if (prog->p.drawStart < 0)
 		prog->p.drawStart = 0;
 	prog->p.drawEnd = prog->p.lineHeight / 2 + WIN_HEIGHT / 2;
@@ -33,7 +33,7 @@ static void	calculate_highest_lowest_pixel(t_data *prog)
 static void	calculate_wall_hit(t_data *prog)
 {
 	if (prog->p.side == 0)
-		prog->p.wallX = prog->p.posY + prog->p.perpWallDist * prog->p.rayDirX;
+		prog->p.wallX = prog->p.posY + prog->p.perpWallDist * prog->p.rayDirY;
 	else
 		prog->p.wallX = prog->p.posX + prog->p.perpWallDist * prog->p.rayDirX;
 	prog->p.wallX -= floor(prog->p.wallX);
@@ -62,7 +62,7 @@ static void	draw_vertical_stripe(t_data *prog, int x)
 			prog->p.texY + prog->p.texX];
 		if (prog->p.side == 1)
 			prog->p.color = (prog->p.color >> 1) & 8355711;
-		paint_pixel(prog, (size_t)x, (size_t)y, prog->p.color);
+		paint_pixel(prog, x, (int)y, prog->p.color);
 		y++;
 	}
 }

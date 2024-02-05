@@ -6,11 +6,25 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 12:40:03 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:24:07 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static int	start_init(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_strchr("01NSEW", str[i]))
+			return (EXIT_SUCCESS);
+		i++;
+	}
+	return (EXIT_FAILURE);
+}
 
 int	map_read(t_data *prog)
 {
@@ -21,9 +35,20 @@ int	map_read(t_data *prog)
 		line = get_next_line(prog->fd);
 		if (!line)
 			break ;
-		if (map_add(prog, line) == EXIT_FAILURE)
-			exit_message(prog, "Add map error: ", NULL, line);
-		free(line);
+		if (start_init(line) == EXIT_SUCCESS)
+		{
+			while (1)
+			{
+				if (map_add(prog, line) == EXIT_FAILURE)
+					exit_message(prog, "Add map error: ", NULL, line);
+				free(line);
+				line = get_next_line(prog->fd);
+				if (!line)
+					break ;
+			}
+		}
+		else
+			free(line);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -91,6 +116,7 @@ void	vector_init(t_data *prog, size_t x, size_t y)
 		prog->p.planeX = -0.66;
 		prog->p.planeY = 0;
 	}
+	vector_init_util(prog, x, y);
 }
 
 void	vector_init_util(t_data *prog, size_t x, size_t y)
@@ -129,7 +155,7 @@ static int	map_check_util(t_data *prog)
 			if (prog->map[i][j] == 'N' || prog->map[i][j] == 'S' || \
 				prog->map[i][j] == 'E' || prog->map[i][j] == 'W')
 			{
-				vector_init(prog, i, j);
+				vector_init(prog, j, i);
 				player_count++;
 			}
 			j++;
@@ -139,17 +165,17 @@ static int	map_check_util(t_data *prog)
 	return (player_count);
 }
 
-static int	ft_iseof(t_data *prog, int i)
-{
-	i++;
-	while (prog->map[i])
-	{
-		if (ft_strlen(prog->map[i]) > 1)
-			return (EXIT_FAILURE);
-		i++;
-	}
-	return (EXIT_SUCCESS);
-}
+//static int	ft_iseof(t_data *prog, int i)
+//{
+//	i++;
+//	while (prog->map[i])
+//	{
+//		if (ft_strlen(prog->map[i]) > 1)
+//			return (EXIT_FAILURE);
+//		i++;
+//	}
+//	return (EXIT_SUCCESS);
+//}
 
 int	map_check(t_data *prog)
 {
@@ -157,20 +183,22 @@ int	map_check(t_data *prog)
 	size_t	j;
 
 	i = 1;
-	if (ft_str2dlen(prog->map) < 3 || map_check_util(prog) != 1)
+	if (map_check_util(prog) != 1)
 		return (EXIT_FAILURE);
 	while (prog->map[i])
 	{
 		j = 0;
-		if (prog->map[i][j] == '\n')
-		{
-			if (ft_iseof(prog, i))
-				return (EXIT_FAILURE);
-		}
+		//if (prog->map[i][j] == '\n')
+		//{
+		//	if (ft_iseof(prog, i))
+		//		return (EXIT_FAILURE);
+		//}
 		while (prog->map[i][j])
 		{
 			if (close_check(prog, i, j))
+			{
 				return (EXIT_FAILURE);
+			}
 			j++;
 		}
 		i++;
