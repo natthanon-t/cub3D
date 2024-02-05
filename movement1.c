@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 09:59:09 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 17:41:59 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:55:14 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	rotate_left(t_data *prog)
 
 int	key_press(int keycode, t_data *data)
 {
-	// if (keycode == ESC)
-	// 	clear_and_exit0(data);
-	if (keycode == KEY_W)
+	if (keycode == KEY_ESC)
+		exit_ex(data);
+	else if (keycode == KEY_W)
 		data->key.w = KEY_PRESSED;
 	else if (keycode == KEY_S)
 		data->key.s = KEY_PRESSED;
@@ -67,8 +67,6 @@ int	key_press(int keycode, t_data *data)
 
 int	key_release(int keycode, t_data *data)
 {
-	// if (keycode == ESC)
-	// 	clear_and_exit0(data);
 	if (keycode == KEY_W)
 		data->key.w = KEY_RELEASED;
 	else if (keycode == KEY_S)
@@ -83,4 +81,3 @@ int	key_release(int keycode, t_data *data)
 		data->key.arrow_right = KEY_RELEASED;
 	return (0);
 }
-

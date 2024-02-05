@@ -15,6 +15,9 @@ SRCS    =	main.c \
 			map_read.c \
 			wall_set.c \
 			minimap.c \
+			minimap_util.c \
+			map_check.c \
+			vector_init.c \
 			movement1.c \
 			movement2.c \
 			init_mlx.c \

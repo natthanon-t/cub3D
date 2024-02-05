@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:38 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 17:43:44 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:04:22 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,13 @@ typedef struct s_mlx
 	void	*window;
 }				t_mlx;
 
+typedef struct s_data2
+{
+	int		res_x;
+	int		res_y;
+	int		startx;
+	int		starty;
+}				t_data2;
 typedef struct s_data
 {
 	int				fd;

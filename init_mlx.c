@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:45 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 18:14:28 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:54:29 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	init_mlx(t_data *prog)
 {
-	prog->img.img_ptr = mlx_new_image(prog->mlx.mlx, WIN_WIDTH + 300, WIN_HEIGHT);
+	prog->img.img_ptr = mlx_new_image(prog->mlx.mlx, WIN_WIDTH + 300, \
+		WIN_HEIGHT);
 	prog->img.img_addr = (int *)mlx_get_data_addr(prog->img.img_ptr,
 			&prog->img.bits_per_pixel, &prog->img.size_line, &prog->img.endian);
 	paint_background(prog);
@@ -24,17 +25,12 @@ int	init_mlx(t_data *prog)
 	mlx_put_image_to_window(prog->mlx.mlx, prog->mlx.window, prog->img.img_ptr,
 		0, 0);
 	mlx_destroy_image(prog->mlx.mlx, prog->img.img_ptr);
-	//mlx_key_hook(prog->mlx.window, key_esc, prog);
-	//mlx_hook(prog->mlx.window, ON_KEYDOWN, 0, &key_press, prog);
-	//mlx_hook(prog->mlx.window, ON_KEYUP, 0, &key_release, prog);
-	//mlx_hook(prog->mlx.window, ON_DESTROY, 0, win_cross, prog);
-	//mlx_loop(prog->mlx.mlx);
 	return (0);
 }
 
 void	paint_pixel(t_data *prog, int x, int y, int color)
 {
-	char *addr;
+	char	*addr;
 
 	addr = (char *)prog->img.img_addr + \
 		(y * prog->img.size_line + x * (prog->img.bits_per_pixel / 8));
@@ -63,25 +59,3 @@ void	paint_background(t_data *prog)
 		x++;
 	}
 }
-
-/*int	key_esc(int keycode, t_data *prog)
-{
-	if (keycode == 53)
-	{
-		//something freeing here
-		//free_map(prog->map);
-		//mlx_destroy_image(prog->mlx.mlx, prog->img.img_ptr);
-		//mlx_destroy_window(prog->mlx.mlx, prog->mlx.window);
-		//exit(0);
-	}
-	return (EXIT_FAILURE);
-}
-
-int	win_cross(t_data *prog)
-{
-	//something freeing here
-	//free_map(prog->map);
-	//mlx_destroy_image(prog->mlx.mlx, prog->img.img_ptr);
-	//mlx_destroy_window(prog->mlx.mlx, prog->mlx.window);
-	//exit(0);
-}*/

@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:20:43 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 16:08:43 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 20:03:17 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,22 @@ static unsigned int	ft_tohex(int red, int green, int blue)
 	return (((red & 0xFF) << 16) | ((green & 0xFF) << 8) | (blue & 0xFF));
 }
 
-static int	ft_isnum(const char *str)
+static int	ft_isnum(const char *src)
 {
 	size_t	i;
+	char	*str;
 
 	i = 0;
-	if (!str)
+	if (!src)
 		return (EXIT_SUCCESS);
+	str = ft_strtrim(src, " ");
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
 			return (EXIT_FAILURE);
 		i++;
 	}
+	free(str);
 	return (EXIT_SUCCESS);
 }
 

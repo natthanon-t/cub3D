@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:18 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 11:03:18 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:49:21 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,8 @@ size_t	ft_str2dlen(char **str)
 	return (i);
 }
 
-void	free_prog(t_data *prog)
-{
-	if (prog->map)
-		ft_free_str2d(prog->map);
-	//if (prog->mlx.window)
-	//	mlx_destroy_window(prog->mlx.mlx, prog->mlx.window);
-}
-
 void	exit_message(t_data *prog, char *str1, char *str2, char *str_free)
 {
-	//int i = 0;
-	//char *str = prog->map[i];
-	//for (int i = 0; prog->map[i]; i++)
-	//{
-	//	str = prog->map[i];
-	//	printf("map = %s\n", str);
-	//}
-	//printf("floor = %lx\n", prog->floor_color);
-	//printf("ceil = %lx\n", prog->ceiling_color);
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(str1, 2);
 	if (str2)

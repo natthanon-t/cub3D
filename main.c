@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:49 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 18:13:47 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:40:43 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,31 +42,25 @@ int	count_map(char **map, int mode)
 
 void	get_map_data(t_data *data, char **map)
 {
-	int	i;
-	int	j;
-	int	k;
+	int		j;
+	int		k;
 	char	**tmp_map;
 
-	i = count_map(map, 1);
 	j = 0;
 	tmp_map = data->map;
-	data->map = (char **)malloc(sizeof(char *) * (i + 1));
-	data->map[i] = NULL;
-	i = count_map(map, 0);
+	data->map = (char **)malloc(sizeof(char *) * (count_map(map, 1) + 1));
+	data->map[count_map(map, 1)] = NULL;
 	while (map[j])
 	{
 		k = 0;
-		data->map[j] = (char *)malloc(sizeof(char) * (i + 1));
-		data->map[j][i] = 0;
+		data->map[j] = (char *)ft_calloc(count_map(map, 0) + 1, sizeof(char));
 		while (map[j][k])
 		{
 			if (map[j][k] != ' ')
 				data->map[j][k] = map[j][k];
-			else if (map[j][k] == ' ')
-				data->map[j][k] = ' ';
 			k++;
 		}
-		while (k < i)
+		while (k < count_map(map, 0))
 			data->map[j][k++] = ' ';
 		j++;
 	}
@@ -86,35 +80,18 @@ int	main(int ac, char **av)
 	if (map_read(&prog) == EXIT_FAILURE)
 		exit_message(&prog, "Map_read ", "failed", NULL);
 	get_map_data(&prog, prog.map);
-	int i = 0;
-	while (prog.map[i])
-		printf("map = %s\n", prog.map[i++]);
 	if (map_check(&prog) == EXIT_FAILURE)
-		exit_message(&prog, "Map_check ", "failed", NULL);	
+		exit_message(&prog, "Map_check ", "failed", NULL);
 	prog.mlx.mlx = mlx_init();
-	prog.mlx.window = mlx_new_window(prog.mlx.mlx, WIN_WIDTH + 300, WIN_HEIGHT, "cub3D");
-	//for (int i = 0; i < 5; i++)
-	//	printf("xpm = %s\n", prog.xpm[i]);
-	//for (int i = 0; i < 3; i++)
-	//	printf("c = %s\n", prog.rgb[i]);
+	prog.mlx.window = mlx_new_window(prog.mlx.mlx, \
+		WIN_WIDTH + 300, WIN_HEIGHT, "cub3D");
 	if (wall_set(&prog) == EXIT_FAILURE)
 		exit_message(&prog, "Wall set ", "failed", NULL);
-	//for (int i = 0;i < 4;i++)
-	//	printf("%p\n", prog.img_src[i].img_ptr);
 	mlx_loop_hook(prog.mlx.mlx, &init_mlx, &prog);
 	mlx_hook(prog.mlx.window, X_EVENT_KEY_PRESS, 0, &key_press, &prog);
 	mlx_hook(prog.mlx.window, X_EVENT_KEY_RELEASE, 0, &key_release, &prog);
+	mlx_hook(prog.mlx.window, 17, 0, &exit_ex, &prog);
 	mlx_loop(prog.mlx.mlx);
-}
-
-static void	key_set_released(t_data *prog)
-{
-	prog->key.w = KEY_RELEASED;
-	prog->key.a = KEY_RELEASED;
-	prog->key.s = KEY_RELEASED;
-	prog->key.d = KEY_RELEASED;
-	prog->key.arrow_left = KEY_RELEASED;
-	prog->key.arrow_right = KEY_RELEASED;
 }
 
 char	*remove_nextline(char *line)
@@ -148,7 +125,12 @@ int	init_data(t_data *prog, char *filename)
 		return (EXIT_FAILURE);
 	ft_bzero(prog->rgb, 3);
 	ft_bzero(prog->xpm, 5);
-	key_set_released(prog);
+	prog->key.w = KEY_RELEASED;
+	prog->key.a = KEY_RELEASED;
+	prog->key.s = KEY_RELEASED;
+	prog->key.d = KEY_RELEASED;
+	prog->key.arrow_left = KEY_RELEASED;
+	prog->key.arrow_right = KEY_RELEASED;
 	prog->p.frameTime = 16 / 1000.0;
 	prog->p.moveSpeed = prog->p.frameTime * 5;
 	prog->p.rotSpeed = prog->p.frameTime * SENS;

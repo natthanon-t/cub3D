@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 11:32:52 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 20:23:21 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	file_read(t_data *prog)
 int	bg_init(t_data *prog, char *line)
 {
 	char	**str2d;
+	char	*tmp_line; 
 
 	str2d = NULL;
 	if (line[0] == '\n')
@@ -38,11 +39,13 @@ int	bg_init(t_data *prog, char *line)
 		rgb_init(prog, line);
 	else
 	{
-		str2d = ft_split(line, ' ');
+		tmp_line = remove_nextline(line);
+		str2d = ft_split(tmp_line, ' ');
 		if (str2d && ft_str2dlen(str2d) == 2)
 			wall_init(prog, str2d);
 		else
 			return (EXIT_FAILURE);
+		free(tmp_line);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -69,13 +72,13 @@ void	rgb_init(t_data *prog, char *line)
 void	wall_init(t_data *prog, char **str)
 {
 	if (!ft_strncmp(str[0], "NO", 2))
-		prog->xpm[0] = remove_nextline(str[1]);
+		prog->xpm[0] = ft_strdup(str[1]);
 	else if (!ft_strncmp(str[0], "SO", 2))
-		prog->xpm[1] = remove_nextline(str[1]);
+		prog->xpm[1] = ft_strdup(str[1]);
 	else if (!ft_strncmp(str[0], "WE", 2))
-		prog->xpm[2] = remove_nextline(str[1]);
+		prog->xpm[2] = ft_strdup(str[1]);
 	else if (!ft_strncmp(str[0], "EA", 2))
-		prog->xpm[3] = remove_nextline(str[1]);
+		prog->xpm[3] = ft_strdup(str[1]);
 	if (str)
 		ft_free_str2d(str);
 }

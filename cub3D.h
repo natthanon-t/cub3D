@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:41 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 17:56:39 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:31:24 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ int		rgb_interpret(t_data *prog);
 /* Map_read */
 int		map_add(t_data *prog, char *line);
 int		map_check(t_data *prog);
+
+/* Map_check */
+int		map_check(t_data *prog);
+
+/* Vector */
+void	vector_init(t_data *prog, size_t x, size_t y);
 void	vector_init_util(t_data *prog, size_t x, size_t y);
 
 /* mlx */
@@ -60,6 +66,8 @@ void	move(t_data *data);
 
 /* minimap */
 void	create_minimap(t_data *data);
+int		starty_minimap(t_data *data, int max_y);
+int		startx_minimap(t_data *data, int max_x);
 
 /* wall_set */
 int		wall_set(t_data *prog);
@@ -73,6 +81,7 @@ int		ft_iscub(char *file_name);
 
 /* utils 2 */
 char	**ft_realloc2d(char **ptr, size_t size);
+int		exit_ex(t_data *prog);
 
 /* raycast */
 void	raycast(t_data *prog);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:23 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 08:33:35 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:52:52 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**ft_realloc2d(char **ptr, size_t size)
 	char	**temp;
 
 	i = 0;
-	temp = (char **)ft_calloc(size + 1 , sizeof(char *));
+	temp = (char **)ft_calloc(size + 1, sizeof(char *));
 	if (!temp)
 		return (NULL);
 	while (ptr[i])
@@ -26,6 +26,18 @@ char	**ft_realloc2d(char **ptr, size_t size)
 		temp[i] = ptr[i];
 		i++;
 	}
-	//ft_free_str2d(ptr);
 	return (temp);
+}
+
+int	exit_ex(t_data *prog)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+		free(prog->xpm[i++]);
+	if (prog->map)
+		ft_free_str2d(prog->map);
+	mlx_destroy_window(prog->mlx.mlx, prog->mlx.window);
+	return (exit(EXIT_SUCCESS), 0);
 }
