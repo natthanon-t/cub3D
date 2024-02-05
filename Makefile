@@ -2,8 +2,8 @@ NAME    =	cub3D
 
 CC      =	cc
 
+#CFLAGS =	-Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(MLX_DIR) -g -fsanitize=address
 CFLAGS =	-Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(MLX_DIR)
-
 FRAMEWORK = -framework OpenGL -framework AppKit
 
 HEADERS     =	cub3D.h \

@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:49 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 00:07:51 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 09:00:01 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@ int	main(int ac, char **av)
 		exit_message(&prog, "RGB_interpret ", "failed", NULL);
 	if (map_read(&prog) == EXIT_FAILURE)
 		exit_message(&prog, "Map_read ", "failed", NULL);
+	prog.mlx.mlx = mlx_init();
+	prog.mlx.window = mlx_new_window(prog.mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (wall_set(&prog) == EXIT_FAILURE)
 		exit_message(&prog, "Wall set ", "failed", NULL);
-	//init_mlx(&prog);
+		init_mlx(&prog);
+	raycast(&prog);
 }
 
 static void	key_set_released(t_data *prog)
@@ -47,7 +50,7 @@ char	*remove_nextline(char *line)
 	i = 0;
 	if (!line)
 		return (NULL);
-	if (line[ft_strlen(line) - 1] == '\n')
+	if (line[ft_strlen(line) - 1] == '\n' && ft_strlen(line) > 1)
 		;
 	else
 		return (ft_strdup(line));

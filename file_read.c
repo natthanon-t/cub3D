@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 00:03:20 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 08:52:43 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	file_read(t_data *prog)
 		line = get_next_line(prog->fd);
 		if (!line)
 			return ;
-		if (bg_init(prog, line))
+		if (bg_init(prog, line) == EXIT_FAILURE)
 			exit_message(prog, "Init Background: ", NULL, line);
 		free(line);
 	}
@@ -34,7 +34,7 @@ int	bg_init(t_data *prog, char *line)
 	str2d = NULL;
 	if (line[0] == '\n')
 		return (EXIT_SUCCESS);
-	if (line && (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2)))
+	if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
 		rgb_init(prog, line);
 	else
 	{
@@ -62,6 +62,7 @@ void	rgb_init(t_data *prog, char *line)
 		tmp_line += 2;
 		prog->rgb[1] = remove_nextline(tmp_line);
 	}
+	prog->rgb[2] = 0;
 }
 
 void	wall_init(t_data *prog, char **str)

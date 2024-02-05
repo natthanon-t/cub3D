@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:45 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/04 22:48:45 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 08:59:36 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	init_mlx(t_data *prog)
 {
-	prog->mlx.mlx = mlx_init();
-	prog->mlx.window = mlx_new_window(prog->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	prog->img.img_ptr = mlx_new_image(prog->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	prog->img.img_addr = mlx_get_data_addr(prog->img.img_ptr,
 			&prog->img.bits_per_pixel, &prog->img.size_line, &prog->img.endian);
