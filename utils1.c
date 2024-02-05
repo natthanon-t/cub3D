@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:18 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 08:38:39 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:03:18 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,13 @@ void	free_prog(t_data *prog)
 
 void	exit_message(t_data *prog, char *str1, char *str2, char *str_free)
 {
-	for (int i = 0;i < 5; i++)
-	{
-		printf("xpm = %s\n", prog->xpm[i]);
-	}
-	for (int i = 0;i < 3;i++)
-	{
-		printf("rgb = %s\n", prog->rgb[i]);
-	}
-	int i = 0;
-	char *str = prog->map[i];
-	for (int i = 0; prog->map[i]; i++)
-	{
-		str = prog->map[i];
-		printf("map = %s\n", str);
-	}
+	//int i = 0;
+	//char *str = prog->map[i];
+	//for (int i = 0; prog->map[i]; i++)
+	//{
+	//	str = prog->map[i];
+	//	printf("map = %s\n", str);
+	//}
 	//printf("floor = %lx\n", prog->floor_color);
 	//printf("ceil = %lx\n", prog->ceiling_color);
 	ft_putstr_fd("Error\n", 2);

@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:38 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/04 23:29:57 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 09:41:47 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ typedef struct s_player
 	int		drawStart;
 	int		lineHeight;
 	int		drawEnd;
-	size_t	texture_nbr;
-	unsigned	color;
+	int		texture_nbr;
+	unsigned int	color;
 }				t_player;
 
 typedef struct s_img
@@ -103,8 +103,8 @@ typedef struct s_data
 	char			**map;
 	char			*xpm[5];
 	char			*rgb[3];
-	unsigned long	floor_color;
-	unsigned long	ceiling_color;
+	unsigned int	floor_color;
+	unsigned int	ceiling_color;
 	int				wall_arr[4][TEXTURE_WIDTH * TEXTURE_WIDTH];
 	t_player		p;
 	t_mlx			mlx;

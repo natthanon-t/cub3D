@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 08:28:23 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/05 10:44:31 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,18 @@ int	map_check_util(t_data *prog)
 	return (player_count);
 }
 
+static int	ft_iseof(t_data *prog, int i)
+{
+	i++;
+	while (prog->map[i])
+	{
+		if (ft_strlen(prog->map[i]) > 1)
+			return (EXIT_FAILURE);
+		i++;
+	}
+	return (EXIT_SUCCESS);
+}
+
 int	map_check(t_data *prog)
 {
 	size_t	i;
@@ -150,9 +162,10 @@ int	map_check(t_data *prog)
 	while (prog->map[i])
 	{
 		j = 0;
-		if (!ft_strlen(prog->map[i]))
+		if (ft_strlen(prog->map[i]) < 3 || prog->map[i][j] == '\n')
 		{
-			// is_end;
+			if (ft_iseof(prog, i))
+				return (EXIT_FAILURE);
 		}
 		while (prog->map[i][j])
 		{
