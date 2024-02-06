@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_read.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 20:23:21 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:01:28 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	file_read(t_data *prog)
 int	bg_init(t_data *prog, char *line)
 {
 	char	**str2d;
-	char	*tmp_line; 
+	char	*tmp_line;
 
 	str2d = NULL;
 	if (line[0] == '\n')
