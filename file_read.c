@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/06 11:01:28 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:04:02 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ void	rgb_init(t_data *prog, char *line)
 
 void	wall_init(t_data *prog, char **str)
 {
-	if (!ft_strncmp(str[0], "NO", 2))
+	if (!ft_strncmp(str[0], "NO", 3))
 		prog->xpm[0] = ft_strdup(str[1]);
-	else if (!ft_strncmp(str[0], "SO", 2))
+	else if (!ft_strncmp(str[0], "SO", 3))
 		prog->xpm[1] = ft_strdup(str[1]);
-	else if (!ft_strncmp(str[0], "WE", 2))
+	else if (!ft_strncmp(str[0], "WE", 3))
 		prog->xpm[2] = ft_strdup(str[1]);
-	else if (!ft_strncmp(str[0], "EA", 2))
+	else if (!ft_strncmp(str[0], "EA", 3))
 		prog->xpm[3] = ft_strdup(str[1]);
 	if (str)
 		ft_free_str2d(str);

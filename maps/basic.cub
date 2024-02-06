@@ -1,13 +1,12 @@
-NO ./assets/wall_no.xpm                      
+NO ./assets/wall_no.xpm
 SO        ./assets/wall_so.xpm
-
-
-F         019,012,014                 
-C        190,    250,   250 
-
-
 WE ./assets/wall_we.xpm
 EA ./assets/wall_ea.xpm
+
+FA      019,012,014
+C       190,    250,   250
+
+
 
 
 
