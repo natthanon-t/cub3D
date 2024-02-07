@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:38 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 19:04:22 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:17:59 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 
-# define SENS 1.5
+# define SENS 2.5
 # define ON_KEYDOWN 2
 # define ON_KEYUP 3
 # define ON_DESTROY 17
@@ -37,6 +37,12 @@
 
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
+
+# define L 0x33001a
+# define I 0x00000033
+# define N 0x1a000d
+# define E 0x00999999
+
 
 typedef struct s_player
 {

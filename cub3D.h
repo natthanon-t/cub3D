@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:41 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 19:31:24 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:15:57 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	rgb_init(t_data *prog, char *line);
 void	wall_init(t_data *prog, char **str);
 int		map_read(t_data *prog);
 int		count_map(char **map, int mode);
-char	*remove_nextline(char *line);
 
 /* RGB */
 int		rgb_interpret(t_data *prog);
@@ -68,6 +67,9 @@ void	move(t_data *data);
 void	create_minimap(t_data *data);
 int		starty_minimap(t_data *data, int max_y);
 int		startx_minimap(t_data *data, int max_x);
+int		check_color(char *c);
+char 	*get_color(t_data *data, int x, int y);
+void	draw_minimap_util(t_data *data, t_data2 *m, int i, int j);
 
 /* wall_set */
 int		wall_set(t_data *prog);

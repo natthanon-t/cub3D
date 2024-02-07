@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 17:47:05 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 19:30:26 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:25:46 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,8 @@ void	draw_minimap(t_data *data, t_data2 *m)
 		j = -1;
 		while (++j <= 20)
 		{
-			if (m->res_y + j < 300 && m->res_x + i < WIN_WIDTH \
-				+ 300 && data->map[m->starty][m->startx] == '1'\
-				&& (i == 20 || j == 20 || i == 0 || j == 0))
-				paint_pixel(data, m->res_x + i, m->res_y + j, 0x33001a);
-			else if (m->res_y + j < 300 && m->res_x + i < WIN_WIDTH + 300 && \
-				data->map[m->starty][m->startx] \
-				&& (i == 20 || j == 20 || i == 0 || j == 0))
-				paint_pixel(data, m->res_x + i, m->res_y + j, 0x1a000d);
-			else if (m->res_y + j < 300 && m->res_x + i < WIN_WIDTH + 300 && \
-				data->map[m->starty][m->startx] == '1')
-				paint_pixel(data, m->res_x + i, m->res_y + j, 0x00000033);
-			else if (m->res_y + j < 300 && m->res_x + i < WIN_WIDTH + 300 && \
-				data->map[m->starty][m->startx])
-				paint_pixel(data, m->res_x + i, m->res_y + j, 0x00999999);
+			if (m->res_y + j < 300 && m->res_x + i < WIN_WIDTH + 300)
+				draw_minimap_util(data, m, i, j);
 		}
 	}
 }
@@ -60,7 +48,7 @@ void	draw_player(t_data *data, int starty, int startx)
 			addr = (char *)data->img.img_addr + ((startyy + y) * \
 				data->img.size_line \
 				+ (startxx + x) * (data->img.bits_per_pixel / 8));
-			if (*(unsigned int *)addr != 0x00000033 && \
+			if (*(unsigned int *)addr != I && \
 				*(unsigned int *)addr != 0x33001a)
 				paint_pixel(data, startxx + x, startyy + y, 0x009933);
 			y += 1;
@@ -87,8 +75,8 @@ void	draw_ray_scan2(t_data *data, double j, double posx, double posy)
 	{
 		addr = (char *)data->img.img_addr + (int)posy * data->img.size_line \
 			+ (int)posx * (data->img.bits_per_pixel / 8);
-		if (*(unsigned int *)addr == 0x00999999 || \
-			*(unsigned int *)addr == 0x1a000d || \
+		if (*(unsigned int *)addr == E || \
+			*(unsigned int *)addr == N || \
 			*(unsigned int *)addr == 0x009933)
 		{
 			paint_pixel(data, (int)posx, (int)posy, 0x009933);

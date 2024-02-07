@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:23 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 18:52:52 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:48:57 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ char	**ft_realloc2d(char **ptr, size_t size)
 		temp[i] = ptr[i];
 		i++;
 	}
+	temp[i] = NULL;
+	temp[i + 1] = NULL;
+	free(ptr);
 	return (temp);
 }
 

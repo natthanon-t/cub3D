@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 18:57:53 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:24:55 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	map_add(t_data *prog, char *line)
 		prog->map = (char **)ft_calloc(2, sizeof(char *));
 		if (!prog->map)
 			return (EXIT_FAILURE);
-		prog->map[0] = remove_nextline(line);
+		prog->map[0] = ft_strtrim(line, "\n");
 	}
 	else
 	{
@@ -70,7 +70,7 @@ int	map_add(t_data *prog, char *line)
 		if (!map)
 			return (EXIT_FAILURE);
 		prog->map = map;
-		prog->map[ft_str2dlen(prog->map)] = remove_nextline(line);
+		prog->map[ft_str2dlen(prog->map)] = ft_strtrim(line, "\n");
 	}
 	return (EXIT_SUCCESS);
 }

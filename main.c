@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:49 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 19:40:43 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:18:17 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ void	get_map_data(t_data *data, char **map)
 		data->map[j] = (char *)ft_calloc(count_map(map, 0) + 1, sizeof(char));
 		while (map[j][k])
 		{
-			if (map[j][k] != ' ')
-				data->map[j][k] = map[j][k];
+			data->map[j][k] = map[j][k];
 			k++;
 		}
 		while (k < count_map(map, 0))
@@ -94,28 +93,16 @@ int	main(int ac, char **av)
 	mlx_loop(prog.mlx.mlx);
 }
 
-char	*remove_nextline(char *line)
+static void	init_data_util(t_data *prog)
 {
-	char	*new;
 	size_t	i;
 
 	i = 0;
-	if (!line)
-		return (NULL);
-	if (line[ft_strlen(line) - 1] == '\n' && ft_strlen(line) > 1)
-		;
-	else
-		return (ft_strdup(line));
-	new = (char *)malloc(sizeof(char) * ft_strlen(line));
-	if (!new)
-		return (NULL);
-	while (line[i] != '\n')
-	{
-		new[i] = line[i];
-		i++;
-	}
-	new[i] = '\0';
-	return (new);
+	while (i < 5)
+		prog->xpm[i++] = 0;
+	i = 0;
+	while (i < 3)
+		prog->rgb[i++] = 0;
 }
 
 int	init_data(t_data *prog, char *filename)
@@ -123,8 +110,7 @@ int	init_data(t_data *prog, char *filename)
 	prog->fd = open(filename, O_RDONLY);
 	if (prog->fd < 0)
 		return (EXIT_FAILURE);
-	ft_bzero(prog->rgb, 3);
-	ft_bzero(prog->xpm, 5);
+	init_data_util(prog);
 	prog->key.w = KEY_RELEASED;
 	prog->key.a = KEY_RELEASED;
 	prog->key.s = KEY_RELEASED;

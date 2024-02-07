@@ -2,8 +2,8 @@ NAME    =	cub3D
 
 CC      =	cc
 
-CFLAGS =	-Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(MLX_DIR) -g -fsanitize=address
-#CFLAGS =	-Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(MLX_DIR)
+CFLAGS =	-Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(MLX_DIR)
+
 FRAMEWORK = -framework OpenGL -framework AppKit
 
 HEADERS     =	cub3D.h \
@@ -15,6 +15,7 @@ SRCS    =	main.c \
 			map_read.c \
 			wall_set.c \
 			minimap.c \
+			minimap2.c \
 			minimap_util.c \
 			map_check.c \
 			vector_init.c \

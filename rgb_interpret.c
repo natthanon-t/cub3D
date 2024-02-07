@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:20:43 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/05 20:03:17 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:40:06 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	rgb_interpret(t_data *prog)
 	{
 		str2d = ft_split(prog->rgb[i], ',');
 		if (!str2d || ft_str2dlen(str2d) != 3 || rgb_check(str2d, rgb))
-			return (EXIT_FAILURE);
+			return (ft_free_str2d(str2d), EXIT_FAILURE);
 		if (!i)
 			prog->floor_color = ft_tohex(rgb[0], rgb[1], rgb[2]);
 		else
