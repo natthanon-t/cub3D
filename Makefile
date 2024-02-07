@@ -4,6 +4,8 @@ CC      =	cc
 
 CFLAGS =	-Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(MLX_DIR)
 
+OBJ_DIR     =	obj
+
 FRAMEWORK = -framework OpenGL -framework AppKit
 
 HEADERS     =	cub3D.h \
@@ -33,15 +35,17 @@ MLX_DIR     =	mlx
 LIBFT     = libft/libft.a
 LIBFT_DIR     =	libft/include
 
-OBJS     =	$(SRCS:.c=.o)
-OBJS_DIR     =	obj
+OBJS      =	$(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 $(NAME): $(OBJS)
 	@$(MAKE) -C mlx
 	@$(MAKE) -C libft
 	@$(CC) $(CFLAGS) $(LIBFT) $(MLX) $(OBJS) $(FRAMEWORK) -o $(NAME)
+	@echo "Compiled cub3D Successfully.."
 
-$(OBJS): $(HEADERS)
+$(OBJ_DIR)/%.o: %.c $(HEADERS)
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: all clean fclean re
 all: $(NAME)
@@ -49,10 +53,10 @@ all: $(NAME)
 clean:
 	@$(MAKE) clean -C libft
 	@$(MAKE) clean -C mlx
-	@$(RM) $(LIBFT) $(MLX) $(OBJS)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@$(RM) $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
