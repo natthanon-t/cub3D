@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:41 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/06 18:15:57 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:29:49 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	vector_init(t_data *prog, size_t x, size_t y);
 void	vector_init_util(t_data *prog, size_t x, size_t y);
 
 /* mlx */
-int		init_mlx(t_data *prog);
+void	init_mlx(t_data *prog);
+int		game_start(t_data *prog);
 void	paint_pixel(t_data *prog, int x, int y, int color);
 void	paint_background(t_data *prog);
 

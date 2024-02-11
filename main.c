@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:49 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/06 16:18:17 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:30:32 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,7 @@ int	main(int ac, char **av)
 	get_map_data(&prog, prog.map);
 	if (map_check(&prog) == EXIT_FAILURE)
 		exit_message(&prog, "Map_check ", "failed", NULL);
-	prog.mlx.mlx = mlx_init();
-	prog.mlx.window = mlx_new_window(prog.mlx.mlx, \
-		WIN_WIDTH + 300, WIN_HEIGHT, "cub3D");
-	if (wall_set(&prog) == EXIT_FAILURE)
-		exit_message(&prog, "Wall set ", "failed", NULL);
-	mlx_loop_hook(prog.mlx.mlx, &init_mlx, &prog);
-	mlx_hook(prog.mlx.window, X_EVENT_KEY_PRESS, 0, &key_press, &prog);
-	mlx_hook(prog.mlx.window, X_EVENT_KEY_RELEASE, 0, &key_release, &prog);
-	mlx_hook(prog.mlx.window, 17, 0, &exit_ex, &prog);
-	mlx_loop(prog.mlx.mlx);
+	init_mlx(&prog);
 }
 
 static void	init_data_util(t_data *prog)

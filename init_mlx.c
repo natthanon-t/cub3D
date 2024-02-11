@@ -3,16 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:54:45 by ntairatt          #+#    #+#             */
-/*   Updated: 2024/02/06 16:48:41 by ntairatt         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:31:44 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	init_mlx(t_data *prog)
+void	init_mlx(t_data *prog)
+{
+	prog->mlx.mlx = mlx_init();
+	prog->mlx.window = mlx_new_window(prog->mlx.mlx, \
+		WIN_WIDTH + 300, WIN_HEIGHT, "cub3D");
+	if (wall_set(prog) == EXIT_FAILURE)
+		exit_message(prog, "Wall set ", "failed", NULL);
+	mlx_loop_hook(prog->mlx.mlx, &game_start, prog);
+	mlx_hook(prog->mlx.window, X_EVENT_KEY_PRESS, 0, &key_press, prog);
+	mlx_hook(prog->mlx.window, X_EVENT_KEY_RELEASE, 0, &key_release, prog);
+	mlx_hook(prog->mlx.window, 17, 0, &exit_ex, prog);
+	mlx_loop(prog->mlx.mlx);
+}
+
+int	game_start(t_data *prog)
 {
 	prog->img.img_ptr = mlx_new_image(prog->mlx.mlx, WIN_WIDTH + 300, \
 		WIN_HEIGHT);
@@ -25,7 +39,7 @@ int	init_mlx(t_data *prog)
 	mlx_put_image_to_window(prog->mlx.mlx, prog->mlx.window, prog->img.img_ptr,
 		0, 0);
 	mlx_destroy_image(prog->mlx.mlx, prog->img.img_ptr);
-	return (0);
+	return (EXIT_FAILURE);
 }
 
 void	paint_pixel(t_data *prog, int x, int y, int color)
